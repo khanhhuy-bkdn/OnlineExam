@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "Import";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+@model Model.EF.Question
+@section header
+{
+    Import question
+}
+@section jsFooter
+{
+    <script>
+        $(document).ready(function () {
+            $(window).on("load", function () {
+                $.get('@Url.Action("GetLanById","Question")',
+                    function (data) {
+                        $("#stless").empty();
+                        $("#stgr").empty();
+                        $.each(data, function (index, row) {
+                            $("#lanid").append("<option value='" + row.LanguageId + "'>" + row.NameLanguage + "</option>")
+                        })
+                    })
+            });
+            $("#lanid").change(function () {
+                $.get('@Url.Action("GetLessionById","Question")',
+                    { id: $("#lanid").val() },
+                    function (data) {
+                        $("#stless").empty();
+                        $("#stgr").empty();
+                        $.each(data, function (index, row) {
+                            $("#stless").append("<option value='" + row.LessionId + "'>" + row.NameLession + "</option>")
+                        })
+                    })
+            });
+            $("#stless").change(function () {
+                $.get('@Url.Action("GetGroupById","Question")',
+                    { id: $("#stless").val() },
+                    function (data) {
+                        $("#stgr").empty();
+                        $.each(data, function (index, row) {
+                            $("#stgr").append("<option value='" + row.GroupId + "'>" + row.NameGroup + "</option>")
+                        })
+                    })
+            });
+        })
+    </script>    
+}
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Nhập mới question
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("Import", "Question", FormMethod.Post, new { @id = "contact_form" , enctype = "multipart/form-data"}))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <fieldset>
+                        <div class="row form-group">
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    <span>Language</span>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="lanid" class="form-control"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    <span>Lession</span>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="stless" class="form-control">
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    <span>Group</span>
+                                </div>
+                                <div class="col-md-7">
+                                    @Html.DropDownListFor(model => model.GroupId, new List<SelectListItem>(), "", new { @class = "form-control", id = "stgr" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    File import
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="file" name="file" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.Status)
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.CheckBoxFor(model => model.Status)
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-7 col-md-offset-3">
+                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                        </div>
+                        <!-- Change this to a button or input when using this as a form -->
+                        <div class="col-md-3 col-md-offset-4">
+                            <button type="submit" class="btn btn-md btn-success btn-block">Import</button>
+                        </div>
+                    </fieldset>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+

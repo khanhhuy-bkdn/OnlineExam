@@ -1,0 +1,72 @@
+﻿@model Model.EF.Group
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+
+@section header
+{
+    Thêm mới group
+}
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Nhập thông tin Group mới
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("Create", "Group", FormMethod.Post, new { @id = "contact_form" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <fieldset>
+                        <div class="row form-group">
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.NameGroup)
+                                </div>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(model => model.NameGroup,
+                              new { @name = "username", @class = "form-control", @autofocus = "autofocus", @placeholder = "Ex: hoangtucodon" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <span>Language</span>
+                                </div>
+                                <div class="col-md-7">
+                                    @Html.DropDownListFor(model => model.LessionId, null, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.Status)
+                                </div>
+                                <div class="col-md-7">
+                                    @Html.CheckBoxFor(model => model.Status)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7 col-md-offset-3">
+                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                        </div>
+                        <!-- Change this to a button or input when using this as a form -->
+                        <div class="col-md-3 col-md-offset-4">
+                            <button type="submit" class="btn btn-md btn-success btn-block">Create</button>
+                        </div>
+                    </fieldset>
+
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,10 @@
+E:\DoNet\OnlineExam\Model\bin\Debug\Model.dll.config
+E:\DoNet\OnlineExam\Model\bin\Debug\Model.dll
+E:\DoNet\OnlineExam\Model\bin\Debug\Model.pdb
+E:\DoNet\OnlineExam\Model\bin\Debug\EntityFramework.dll
+E:\DoNet\OnlineExam\Model\bin\Debug\EntityFramework.SqlServer.dll
+E:\DoNet\OnlineExam\Model\bin\Debug\EntityFramework.xml
+E:\DoNet\OnlineExam\Model\bin\Debug\EntityFramework.SqlServer.xml
+E:\DoNet\OnlineExam\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+E:\DoNet\OnlineExam\Model\obj\Debug\Model.dll
+E:\DoNet\OnlineExam\Model\obj\Debug\Model.pdb

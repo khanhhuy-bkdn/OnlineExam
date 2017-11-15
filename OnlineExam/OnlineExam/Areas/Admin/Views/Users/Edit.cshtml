@@ -1,0 +1,102 @@
+﻿@model Model.EF.User
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+
+@section header
+{
+    Update người dùng
+}
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Update thông tin User
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("Edit", "Users", FormMethod.Post, new { @id = "contact_form" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <fieldset>
+                        <div class="row form-group">
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.UserName)
+                                </div>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(model => model.UserName,
+                              new { @name = "username", @class = "form-control", @autofocus = "autofocus", @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.Password)
+                                </div>
+                                <div class="col-md-7">
+                                    @Html.PasswordFor(model => model.Password,
+                               new { @class = "form-control", @name = "password", @placeholder = "Ex: 123abc" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.FullName)
+                                </div>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(model => model.FullName,
+                              new { @name = "username", @class = "form-control", @autofocus = "autofocus"})
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.Email)
+                                </div>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(model => model.Email,
+                              new { @name = "email", @class = "form-control", @autofocus = "autofocus", @readonly = true })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.Role)
+                                </div>
+                                <div class="col-md-7">
+                                    @Html.TextBoxFor(model => model.Role,
+                              new { @name = "role", @class = "form-control", @autofocus = "autofocus"})
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    @Html.LabelFor(model => model.Status)
+                                </div>
+                                <div class="col-md-7">
+                                    @Html.CheckBoxFor(model => model.Status)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7 col-md-offset-3">
+                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                        </div>
+                        <!-- Change this to a button or input when using this as a form -->
+                        <div class="col-md-3 col-md-offset-4">
+                            <button type="submit" class="btn btn-md btn-success btn-block">Cập nhật</button>
+                        </div>
+                    </fieldset>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>

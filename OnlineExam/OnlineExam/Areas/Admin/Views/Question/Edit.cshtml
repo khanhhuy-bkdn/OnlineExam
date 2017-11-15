@@ -1,0 +1,169 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+
+@model Model.EF.Question
+@section header
+{
+    Update lession
+}
+
+@section jsFooter
+{
+    <script>
+        $(document).ready(function () {
+            var editor = CKEDITOR.replace("txtcontent", {       
+                customConfig: '/assets/admin/js/plugins/ckeditor/config.js'
+            });
+            var editor1 = CKEDITOR.replace("txtA", {
+                customConfig: '/assets/admin/js/plugins/ckeditor/config.js'
+            });
+            var editor2 = CKEDITOR.replace("txtB", {
+                customConfig: '/assets/admin/js/plugins/ckeditor/config.js'
+            });
+            var editor3 = CKEDITOR.replace("txtC", {
+                customConfig: '/assets/admin/js/plugins/ckeditor/config.js'
+            });
+            var editor4 = CKEDITOR.replace("txtD", {
+                customConfig: '/assets/admin/js/plugins/ckeditor/config.js'
+            });
+        })
+    </script>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Update thông tin question
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("Edit", "Question", FormMethod.Post, new { @id = "contact_form" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <fieldset>
+                        <div class="row form-group">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.Content)
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Content, new
+                           {
+                               htmlArreibutes =
+                                   new { @class = "form-control", @autofocus = "autofocus" },
+                               id = "txtcontent"
+                           })
+                            </div>
+
+                        </div>
+                        <div class="row form-group">
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.AnswerA)
+                                </div>
+                                <div class="col-md-9">
+                                    @Html.TextAreaFor(model => model.AnswerA, new
+                               {
+                                   htmlArreibutes =
+                                   new { @class = "form-control", @autofocus = "autofocus" },
+                                   id = "txtA"
+                               })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.AnswerB)
+                                </div>
+                                <div class="col-md-9">
+                                    @Html.TextAreaFor(model => model.AnswerB, new
+                               {
+                                   htmlArreibutes =
+                                   new { @class = "form-control", @autofocus = "autofocus" },
+                                   id = "txtB"
+                               })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.AnswerC)
+                                </div>
+                                <div class="col-md-9">
+                                    @Html.TextAreaFor(model => model.AnswerC, new
+                               {
+                                   htmlArreibutes =
+                                   new { @class = "form-control", @autofocus = "autofocus" },
+                                   id = "txtC"
+                               })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.AnswerD)
+                                </div>
+                                <div class="col-md-9">
+                                    @Html.TextAreaFor(model => model.AnswerD, new
+                               {
+                                   htmlArreibutes =
+                                   new { @class = "form-control", @autofocus = "autofocus" },
+                                   id = "txtD"
+                               })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.CorrectAnswer)
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.TextBoxFor(model => model.CorrectAnswer,
+                                   new { @class = "form-control", @autofocus = "autofocus" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    <span>Language</span>
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.DropDownListFor(model => model.GroupId, null, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    @Html.LabelFor(model => model.Status)
+                                </div>
+                                <div class="col-md-5">
+                                    @Html.CheckBoxFor(model => model.Status)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7 col-md-offset-3">
+                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                        </div>
+                        <!-- Change this to a button or input when using this as a form -->
+                        @Html.TextBoxFor(model => model.QuestionId,
+                              new { @hidden = true })
+                        <div class="col-md-3 col-md-offset-4">
+                            <button type="submit" class="btn btn-md btn-success btn-block">Cập nhật</button>
+                        </div>
+                    </fieldset>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
